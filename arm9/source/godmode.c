@@ -133,9 +133,9 @@ u32 SplashInit(const char* modestr) {
 
     DrawStringF(BOT_SCREEN, pos_xb, pos_yb, COLOR_STD_FONT, COLOR_STD_BG, "%s\n%*.*s\n%s\n \n \n%s\n%s\n \n%s\n%s",
         namestr, strnlen(namestr, 64), strnlen(namestr, 64),
-        "------------------------------", "https://github.com/d0k3/GodMode9",
-        "Releases:", "https://github.com/d0k3/GodMode9/releases/", // this won't fit with a 8px width font
-        "Hourlies:", "https://d0k3.secretalgorithm.com/");
+        "", "",
+        "", "", // this won't fit with a 8px width font
+        "", "");
     DrawStringF(BOT_SCREEN, pos_xu, pos_yu, COLOR_STD_FONT, COLOR_STD_BG, loadstr);
     DrawStringF(BOT_SCREEN, pos_xb, pos_yu, COLOR_STD_FONT, COLOR_STD_BG, "built: " DBUILTL);
 
@@ -2059,15 +2059,15 @@ u32 GodMode(int entrypoint) {
     }
     
     // check for embedded essential backup
-    if (((entrypoint == ENTRY_NANDBOOT) || (entrypoint == ENTRY_B9S)) &&
-        !PathExist("S:/essential.exefs") && CheckGenuineNandNcsd() &&
-        ShowPrompt(true, "Essential files backup not found.\nCreate one now?")) {
-        if (EmbedEssentialBackup("S:/nand.bin") == 0) {
-            u32 flags = BUILD_PATH | SKIP_ALL;
-            PathCopy(OUTPUT_PATH, "S:/essential.exefs", &flags);
-            ShowPrompt(false, "Backup embedded in SysNAND\nand written to " OUTPUT_PATH ".");
-        }
-    }
+    //     if (((entrypoint == ENTRY_NANDBOOT) || (entrypoint == ENTRY_B9S)) &&
+    //         !PathExist("S:/essential.exefs") && CheckGenuineNandNcsd() &&
+    //         ShowPrompt(true, "Essential files backup not found.\nCreate one now?")) {
+    //         if (EmbedEssentialBackup("S:/nand.bin") == 0) {
+    //             u32 flags = BUILD_PATH | SKIP_ALL;
+    //             PathCopy(OUTPUT_PATH, "S:/essential.exefs", &flags);
+    //             ShowPrompt(false, "Backup embedded in SysNAND\nand written to " OUTPUT_PATH ".");
+    //         }
+    //     }
     
     // check internal clock
     if (IS_SIGHAX) { // we could actually do this on any entrypoint
